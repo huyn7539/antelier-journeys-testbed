@@ -1,7 +1,6 @@
 version: 1
 name: Runner-local synthetic preview
 app: http://127.0.0.1:7888/
-deployed: { header: x-revision }
 journeys:
   - name: visitor sees the approved Ready state
     steps:
