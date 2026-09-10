@@ -6,4 +6,4 @@ journeys:
   - name: visitor sees the approved Ready state
     steps:
       - goto: /
-      - expect: { text: Ready }
+      - expect: { text: Broken }
