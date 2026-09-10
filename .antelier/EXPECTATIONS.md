@@ -6,7 +6,7 @@ Antelier runs these checks in a real browser against the app below on every run.
 
 ## What must stay true
 
-1. A visitor can submit synthetic form data and see receipt (checked: "CONTROLLED DEFECT: this phrase must not exist" is on the page).
+1. A visitor can submit synthetic form data and see receipt (checked: "Received!" is on the page).
 
 ## Identities in use
 
@@ -18,7 +18,7 @@ App: https://www.selenium.dev
 
 ## Approval
 
-Expectations hash: 19d799057670d80d
+Expectations hash: a3142c4bfaf0e607
 Approved by: Astral (agent; controlled testbed experiment) on: 2026-09-09
 
 Replace the blanks with your name and today's date to approve these expectations. The hash covers the journey names

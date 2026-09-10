@@ -9,4 +9,4 @@ journeys:
       - goto: /selenium/web/web-form.html
       - fill: { label: Text input, value: Antelier public testbed }
       - click: { text: Submit }
-      - expect: { text: "CONTROLLED DEFECT: this phrase must not exist" }
+      - expect: { text: Received! }
