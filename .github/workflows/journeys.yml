@@ -20,6 +20,8 @@ jobs:
         with:
           node-version: 22
       - run: npx --yes playwright@1.61.0 install --with-deps chromium
+      - name: Use the preserved Selenium approval for this legacy scenario
+        run: cp .antelier/selenium-expectations.md .antelier/EXPECTATIONS.md
       - name: Run journeys against the live public Selenium test form
         run: npx --yes antelier@0.2.0 journeys run --config .antelier/selenium.yml --report antelier-report
       - uses: actions/upload-artifact@v4
