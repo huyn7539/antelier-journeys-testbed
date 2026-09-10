@@ -1,1 +1,1 @@
-exports.acceptance = () => 'Broken';
+exports.acceptance = () => 'Ready';

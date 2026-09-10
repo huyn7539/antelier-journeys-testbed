@@ -21,7 +21,7 @@ jobs:
           node-version: 22
       - run: npx --yes playwright@1.61.0 install --with-deps chromium
       - name: Run journeys against the live public Selenium test form
-        run: npx --yes antelier@0.2.0 journeys run --report antelier-report
+        run: npx --yes antelier@0.2.0 journeys run --config .antelier/selenium.yml --report antelier-report
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -38,7 +38,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          npx --yes antelier@0.2.0 journeys run --report no-browser-report > no-browser.txt 2>&1
+          npx --yes antelier@0.2.0 journeys run --config .antelier/selenium.yml --report no-browser-report > no-browser.txt 2>&1
           code=$?
           cat no-browser.txt
           echo "exit=$code" >> no-browser.txt
