@@ -17,7 +17,7 @@ jobs:
     outputs:
       receipt-sha256: ${{ steps.verify.outputs.receipt-sha256 }}
     steps:
-      - uses: antelier/action@a18553bb33d1943a169273939a5f258ba36afa92
+      - uses: antelier/action@c3b5b29e0cc9cbbd1964175232d941614b4e4301
         id: verify
         with:
           mode: verify
@@ -48,7 +48,7 @@ jobs:
         with:
           name: antelier-execution-${{ github.run_attempt }}
           path: ${{ runner.temp }}/antelier-receipt
-      - uses: antelier/action@a18553bb33d1943a169273939a5f258ba36afa92
+      - uses: antelier/action@c3b5b29e0cc9cbbd1964175232d941614b4e4301
         with:
           mode: publish
           source-workflow: .github/workflows/ci.yml
