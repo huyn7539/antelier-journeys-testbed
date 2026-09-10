@@ -1,12 +1,9 @@
 version: 1
-name: Selenium public test form
-app: https://www.selenium.dev
-supabase: { ref: "", tables: [] }
-users: {}
+name: Runner-local synthetic preview
+app: http://127.0.0.1:7888/
+deployed: { header: x-revision }
 journeys:
-  - name: submit synthetic form data and see receipt
+  - name: visitor sees the approved Ready state
     steps:
-      - goto: /selenium/web/web-form.html
-      - fill: { label: Text input, value: Antelier public testbed }
-      - click: { text: Submit }
-      - expect: { text: Received! }
+      - goto: /
+      - expect: { text: Ready }
