@@ -6,3 +6,5 @@ acceptance test is synthetic. A completed CI receipt does not verify the Seleniu
 app or its browser scenarios. Those are not configured for revision-bound approval.
 No repository code is checked out or executed by the write-permission job.
 No production release or user adoption claim is represented by this rehearsal.
+
+First fork run: unchanged synthetic acceptance stays green.
