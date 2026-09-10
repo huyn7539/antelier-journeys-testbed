@@ -1,0 +1,53 @@
+name: Antelier journeys
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+permissions:
+  contents: read
+concurrency:
+  group: antelier-journeys
+  cancel-in-progress: false
+jobs:
+  journeys:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx --yes playwright@1.61.0 install --with-deps chromium
+      - name: Run journeys against the live public Selenium test form
+        run: npx --yes antelier@0.2.0 journeys run --report antelier-report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: antelier-journeys-report
+          path: antelier-report
+          retention-days: 7
+  no-browser-refusal:
+    runs-on: ubuntu-latest
+    container: node:22-bookworm-slim
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exercise real browser absence in a clean container
+        shell: bash
+        run: |
+          set +e
+          npx --yes antelier@0.2.0 journeys run --report no-browser-report > no-browser.txt 2>&1
+          code=$?
+          cat no-browser.txt
+          echo "exit=$code" >> no-browser.txt
+          test "$code" -ne 0 && grep -F 'Install Google Chrome or run' no-browser.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: no-browser-refusal
+          path: |
+            no-browser.txt
+            no-browser-report
+          retention-days: 7
