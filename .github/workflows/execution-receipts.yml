@@ -13,7 +13,9 @@ jobs:
       contents: read
       actions: read
       pull-requests: read
+      checks: read
       deployments: read
+      statuses: read
     outputs:
       receipt-sha256: ${{ steps.verify.outputs.receipt-sha256 }}
     steps:
@@ -45,7 +47,7 @@ jobs:
           subprocess.Popen(['python3',str(server),str(root/'preview.html'),os.environ['SOURCE_HEAD']],env={'PATH':os.environ['PATH']},stdout=open(root/'preview.log','w'),stderr=subprocess.STDOUT,start_new_session=True)
           PY
           curl --fail --retry 8 --retry-connrefused --retry-delay 1 http://127.0.0.1:7888/ > /dev/null
-      - uses: antelier/action@f9fa08663f6e173ea2f12cd0ad1afb3bcc52b1ef
+      - uses: antelier/action@4036703c01eeb345f834faedbb9509595770fd18
         id: verify
         with:
           mode: verify
@@ -69,6 +71,7 @@ jobs:
       contents: read
       actions: read
       deployments: read
+      statuses: read
       checks: write
       pull-requests: write
     steps:
@@ -76,7 +79,7 @@ jobs:
         with:
           name: antelier-execution-${{ github.run_attempt }}
           path: ${{ runner.temp }}/antelier-receipt
-      - uses: antelier/action@f9fa08663f6e173ea2f12cd0ad1afb3bcc52b1ef
+      - uses: antelier/action@4036703c01eeb345f834faedbb9509595770fd18
         with:
           mode: publish
           source-workflow: .github/workflows/ci.yml
