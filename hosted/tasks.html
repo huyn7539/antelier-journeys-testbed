@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Task persistence · Antelier testbed</title>
+<style>
+body{font:18px/1.5 system-ui;margin:4rem auto;padding:0 1.2rem;max-width:44rem;background:#f6f4ef;color:#172b29}h1{line-height:1.15}form{display:flex;gap:.6rem;flex-wrap:wrap}label{width:100%;font-weight:600}input,button{font:inherit;padding:.65rem;border:1px solid #657571;border-radius:.3rem}input{flex:1;min-width:12rem}button{background:#194b43;color:white;cursor:pointer}li{padding:.5rem 0}small{color:#4b625e}
+</style>
+<main>
+<small>Antelier · isolated acceptance testbed</small>
+<h1>Tasks that survive a reload</h1>
+<p>Create a task, reload this page, and confirm it remains. This synthetic app stores only test tasks in your browser.</p>
+<form id="tasks-form">
+<label for="task-title">Task title</label>
+<input id="task-title" required maxlength="200" autocomplete="off">
+<button type="submit">Add task</button>
+</form>
+<p id="status" role="status"></p>
+<ul id="tasks" aria-label="Saved tasks"></ul>
+</main>
+<script>
+const key='antelier-acceptance-tasks';
+let tasks;
+try { tasks=JSON.parse(localStorage.getItem(key)||'[]'); } catch { tasks=[]; }
+if(!Array.isArray(tasks)) tasks=[];
+const list=document.querySelector('#tasks');
+function render(){list.replaceChildren();for(const title of tasks){const li=document.createElement('li');li.textContent=String(title);list.append(li);}}
+render();
+document.querySelector('#tasks-form').addEventListener('submit',event=>{
+  event.preventDefault();
+  const field=document.querySelector('#task-title'),title=field.value.trim();
+  if(!title)return;
+  tasks.push(title);
+  localStorage.setItem(key,JSON.stringify(tasks));
+  render();field.value='';document.querySelector('#status').textContent='Task added';
+});
+</script>
+</html>
