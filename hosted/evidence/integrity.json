@@ -1,0 +1,20 @@
+[
+  {
+    "label": "broken",
+    "head": "f3b9fe0f90883da8c0de953dfc94ead9d74dc73d",
+    "policy_binding": "e847293dd71db17672360c5d4cfc0395ebf8607c94bddfc05ed608039e99a503",
+    "expectation_hash": "dc825049847e3bc0",
+    "comment_id": 5628589220,
+    "files_verified": 9,
+    "worker_exit": 1
+  },
+  {
+    "label": "fixed",
+    "head": "985709e3ea2f7daac759641a0cac9c0fc7ced972",
+    "policy_binding": "e847293dd71db17672360c5d4cfc0395ebf8607c94bddfc05ed608039e99a503",
+    "expectation_hash": "dc825049847e3bc0",
+    "comment_id": 5628589220,
+    "files_verified": 9,
+    "worker_exit": 0
+  }
+]

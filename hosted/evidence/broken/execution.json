@@ -1,0 +1,79 @@
+{
+  "repo": "huyn7539/antelier-journeys-testbed",
+  "number": 2,
+  "head": "f3b9fe0f90883da8c0de953dfc94ead9d74dc73d",
+  "base": "ca0647e3d5c86ebe20a28cb6b6c728b616f8bd6a",
+  "source_run": 34555090582,
+  "source_attempt": 2,
+  "policy_binding": "e847293dd71db17672360c5d4cfc0395ebf8607c94bddfc05ed608039e99a503",
+  "deployment": {
+    "runnable": true,
+    "id": "commit-status:53958931746",
+    "revision": "f3b9fe0f90883da8c0de953dfc94ead9d74dc73d",
+    "pr_number": 2,
+    "environment": "Approved PR preview",
+    "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+    "source": {
+      "type": "commit-status",
+      "id": 53958931746,
+      "name": "antelier/controlled-cloudflare-preview",
+      "creator_id": 47341426
+    }
+  },
+  "worker_exit": 1,
+  "files": [
+    {
+      "path": "report.html",
+      "size": 40060,
+      "sha256": "21db2a22a343851af668b01e198bfad0f29051a5d98fdab32fe0ea95bcb6075e"
+    },
+    {
+      "path": "report.json",
+      "size": 14640,
+      "sha256": "e6f585badfdde3903e5db633f570e67aa95a9618844a57b1caef57e3f2a8f2a3"
+    },
+    {
+      "path": "screenshots/journey-1-step-1.png",
+      "size": 34362,
+      "sha256": "cee049aa32f9569520cefe81da2c53bc0ee4df69d648b2d53abffcd0510dcc87"
+    },
+    {
+      "path": "screenshots/journey-1-step-2.png",
+      "size": 41954,
+      "sha256": "d3b55b099cafae2462621b6ecaf7c7a2185447bcda07e4c04d117963011dc385"
+    },
+    {
+      "path": "screenshots/journey-1-step-3.png",
+      "size": 43738,
+      "sha256": "d83308eb8e499b5dafc900d501e904e03e9c8bd735760ec3fab83c6d0c8c994b"
+    },
+    {
+      "path": "screenshots/journey-1-step-4.png",
+      "size": 43738,
+      "sha256": "d83308eb8e499b5dafc900d501e904e03e9c8bd735760ec3fab83c6d0c8c994b"
+    },
+    {
+      "path": "screenshots/journey-1-step-5.png",
+      "size": 43738,
+      "sha256": "d83308eb8e499b5dafc900d501e904e03e9c8bd735760ec3fab83c6d0c8c994b"
+    },
+    {
+      "path": "screenshots/journey-1-step-6.png",
+      "size": 34362,
+      "sha256": "cee049aa32f9569520cefe81da2c53bc0ee4df69d648b2d53abffcd0510dcc87"
+    },
+    {
+      "path": "screenshots/journey-1-step-7.png",
+      "size": 34362,
+      "sha256": "cee049aa32f9569520cefe81da2c53bc0ee4df69d648b2d53abffcd0510dcc87"
+    }
+  ],
+  "schema_version": "antelier-execution-receipt-v1",
+  "producer": {
+    "run_id": "34555151017",
+    "attempt": "1",
+    "workflow_ref": "huyn7539/antelier-journeys-testbed/.github/workflows/execution-receipts.yml@refs/heads/main",
+    "workflow_sha": "ca0647e3d5c86ebe20a28cb6b6c728b616f8bd6a",
+    "job": "verify"
+  }
+}

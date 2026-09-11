@@ -1,0 +1,451 @@
+{
+  "version": 1,
+  "stack": {
+    "builder": "unknown",
+    "backend": "unknown",
+    "evidence": []
+  },
+  "app": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+  "name": "Hosted task persistence",
+  "timestamp": "2026-09-11T02:34:57.424Z",
+  "journeys": [
+    {
+      "name": "a created task remains after reload",
+      "as": null,
+      "passed": false,
+      "steps": [
+        {
+          "action": "goto",
+          "step": {
+            "goto": "/"
+          },
+          "timestamp": "2026-09-11T02:34:58.805Z",
+          "passed": true,
+          "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+          "tab": "main",
+          "screenshot": "screenshots/journey-1-step-1.png",
+          "console_errors": [],
+          "failed_requests": [],
+          "http_errors": [],
+          "responses": [
+            {
+              "tab": "main",
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "status": 200,
+              "method": "GET"
+            }
+          ],
+          "status": 200,
+          "attempts": [
+            {
+              "action": "goto",
+              "step": {
+                "goto": "/"
+              },
+              "timestamp": "2026-09-11T02:34:58.805Z",
+              "passed": true,
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "tab": "main",
+              "screenshot": "screenshots/journey-1-step-1.png",
+              "console_errors": [],
+              "failed_requests": [],
+              "http_errors": [],
+              "responses": [
+                {
+                  "tab": "main",
+                  "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+                  "status": 200,
+                  "method": "GET"
+                }
+              ],
+              "status": 200,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "action": "fill",
+          "step": {
+            "fill": {
+              "label": "Task title",
+              "value": "Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42"
+            }
+          },
+          "timestamp": "2026-09-11T02:34:59.101Z",
+          "passed": true,
+          "matched": {
+            "label": "Task title"
+          },
+          "kept": true,
+          "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+          "tab": "main",
+          "screenshot": "screenshots/journey-1-step-2.png",
+          "console_errors": [],
+          "failed_requests": [],
+          "http_errors": [],
+          "responses": [],
+          "status": 200,
+          "attempts": [
+            {
+              "action": "fill",
+              "step": {
+                "fill": {
+                  "label": "Task title",
+                  "value": "Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42"
+                }
+              },
+              "timestamp": "2026-09-11T02:34:59.101Z",
+              "passed": true,
+              "matched": {
+                "label": "Task title"
+              },
+              "kept": true,
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "tab": "main",
+              "screenshot": "screenshots/journey-1-step-2.png",
+              "console_errors": [],
+              "failed_requests": [],
+              "http_errors": [],
+              "responses": [],
+              "status": 200,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "action": "click",
+          "step": {
+            "click": {
+              "text": "Add task"
+            }
+          },
+          "timestamp": "2026-09-11T02:34:59.439Z",
+          "passed": true,
+          "matched": {
+            "role": "button",
+            "name": "Add task"
+          },
+          "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+          "tab": "main",
+          "screenshot": "screenshots/journey-1-step-3.png",
+          "console_errors": [],
+          "failed_requests": [],
+          "http_errors": [],
+          "responses": [],
+          "status": 200,
+          "attempts": [
+            {
+              "action": "click",
+              "step": {
+                "click": {
+                  "text": "Add task"
+                }
+              },
+              "timestamp": "2026-09-11T02:34:59.439Z",
+              "passed": true,
+              "matched": {
+                "role": "button",
+                "name": "Add task"
+              },
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "tab": "main",
+              "screenshot": "screenshots/journey-1-step-3.png",
+              "console_errors": [],
+              "failed_requests": [],
+              "http_errors": [],
+              "responses": [],
+              "status": 200,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "action": "expect",
+          "step": {
+            "expect": {
+              "text": "Task added"
+            }
+          },
+          "timestamp": "2026-09-11T02:34:59.574Z",
+          "passed": true,
+          "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+          "tab": "main",
+          "screenshot": "screenshots/journey-1-step-4.png",
+          "console_errors": [],
+          "failed_requests": [],
+          "http_errors": [],
+          "responses": [],
+          "status": 200,
+          "attempts": [
+            {
+              "action": "expect",
+              "step": {
+                "expect": {
+                  "text": "Task added"
+                }
+              },
+              "timestamp": "2026-09-11T02:34:59.574Z",
+              "passed": true,
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "tab": "main",
+              "screenshot": "screenshots/journey-1-step-4.png",
+              "console_errors": [],
+              "failed_requests": [],
+              "http_errors": [],
+              "responses": [],
+              "status": 200,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "action": "expect",
+          "step": {
+            "expect": {
+              "text": "Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42",
+              "count": 1
+            }
+          },
+          "timestamp": "2026-09-11T02:34:59.606Z",
+          "passed": true,
+          "observed_count": 1,
+          "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+          "tab": "main",
+          "screenshot": "screenshots/journey-1-step-5.png",
+          "console_errors": [],
+          "failed_requests": [],
+          "http_errors": [],
+          "responses": [],
+          "status": 200,
+          "attempts": [
+            {
+              "action": "expect",
+              "step": {
+                "expect": {
+                  "text": "Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42",
+                  "count": 1
+                }
+              },
+              "timestamp": "2026-09-11T02:34:59.606Z",
+              "passed": true,
+              "observed_count": 1,
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "tab": "main",
+              "screenshot": "screenshots/journey-1-step-5.png",
+              "console_errors": [],
+              "failed_requests": [],
+              "http_errors": [],
+              "responses": [],
+              "status": 200,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "action": "reload",
+          "step": {
+            "reload": true
+          },
+          "timestamp": "2026-09-11T02:34:59.639Z",
+          "passed": true,
+          "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+          "tab": "main",
+          "screenshot": "screenshots/journey-1-step-6.png",
+          "console_errors": [],
+          "failed_requests": [],
+          "http_errors": [],
+          "responses": [
+            {
+              "tab": "main",
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "status": 200,
+              "method": "GET"
+            }
+          ],
+          "status": 200,
+          "attempts": [
+            {
+              "action": "reload",
+              "step": {
+                "reload": true
+              },
+              "timestamp": "2026-09-11T02:34:59.639Z",
+              "passed": true,
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "tab": "main",
+              "screenshot": "screenshots/journey-1-step-6.png",
+              "console_errors": [],
+              "failed_requests": [],
+              "http_errors": [],
+              "responses": [
+                {
+                  "tab": "main",
+                  "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+                  "status": 200,
+                  "method": "GET"
+                }
+              ],
+              "status": 200,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "action": "expect",
+          "step": {
+            "expect": {
+              "text": "Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42",
+              "count": 1
+            }
+          },
+          "timestamp": "2026-09-11T02:34:59.723Z",
+          "passed": false,
+          "observed_count": 0,
+          "error": "Expected 1 visible text matches; received 0",
+          "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+          "tab": "main",
+          "screenshot": "screenshots/journey-1-step-7.png",
+          "console_errors": [],
+          "failed_requests": [],
+          "http_errors": [],
+          "responses": [],
+          "status": 200,
+          "also_observed": [],
+          "runner_interference": [],
+          "cause": "app",
+          "observed": {
+            "path": "/",
+            "controls": [
+              {
+                "role": "input",
+                "name": "",
+                "label": "Task title",
+                "placeholder": ""
+              },
+              {
+                "role": "button",
+                "name": "Add task",
+                "label": "",
+                "placeholder": ""
+              }
+            ]
+          },
+          "classification": {
+            "label": "app defect",
+            "evidence": [
+              "Expected 1 visible text matches; received 0",
+              "Observed controls: Task title, Add task",
+              "Navigation HTTP status: 200",
+              "Screenshot: screenshots/journey-1-step-7.png"
+            ],
+            "fix": "Inspect the screenshot and observed controls against the owned expectation."
+          },
+          "attempts": [
+            {
+              "action": "expect",
+              "step": {
+                "expect": {
+                  "text": "Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42",
+                  "count": 1
+                }
+              },
+              "timestamp": "2026-09-11T02:34:59.723Z",
+              "passed": false,
+              "observed_count": 0,
+              "error": "Expected 1 visible text matches; received 0",
+              "url": "https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/",
+              "tab": "main",
+              "screenshot": "screenshots/journey-1-step-7.png",
+              "console_errors": [],
+              "failed_requests": [],
+              "http_errors": [],
+              "responses": [],
+              "status": 200,
+              "also_observed": [],
+              "runner_interference": [],
+              "cause": "app",
+              "observed": {
+                "path": "/",
+                "controls": [
+                  {
+                    "role": "input",
+                    "name": "",
+                    "label": "Task title",
+                    "placeholder": ""
+                  },
+                  {
+                    "role": "button",
+                    "name": "Add task",
+                    "label": "",
+                    "placeholder": ""
+                  }
+                ]
+              },
+              "classification": {
+                "label": "app defect",
+                "evidence": [
+                  "Expected 1 visible text matches; received 0",
+                  "Observed controls: Task title, Add task",
+                  "Navigation HTTP status: 200",
+                  "Screenshot: screenshots/journey-1-step-7.png"
+                ],
+                "fix": "Inspect the screenshot and observed controls against the owned expectation."
+              },
+              "attempt": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "deployed": {
+    "source": "header",
+    "value": "f3b9fe0f90883da8c0de953dfc94ead9d74dc73d",
+    "header": "x-revision",
+    "expected": "f3b9fe0f90883da8c0de953dfc94ead9d74dc73d"
+  },
+  "expectations": {
+    "hash": "dc825049847e3bc0",
+    "approved": true,
+    "approved_by": "Codex controlled testbed under operator authorization",
+    "approved_on": "2026-09-10",
+    "approved_hash": "dc825049847e3bc0",
+    "changed": false,
+    "notice": null
+  },
+  "access_audit": {
+    "state": "not applicable",
+    "reason": "no backend configured; identity check and access audit do not apply"
+  },
+  "findings": [],
+  "repair": {
+    "state": "not applicable",
+    "summary": "no backend configured; identity check and access audit do not apply",
+    "files": []
+  },
+  "not_checked": [
+    "no backend configured; identity check and access audit do not apply",
+    "Only the configured journeys and assertions were checked. Browser visibility does not prove API isolation or physical data erasure.",
+    "Payments, other devices, third-party origins and unlisted workflows were not checked.",
+    "No migration was applied. Screenshots may contain app data; keep reports private."
+  ],
+  "identities": {
+    "checked": false,
+    "reason": "no backend configured; identity check and access audit do not apply"
+  },
+  "checks": {
+    "identities": "not applicable",
+    "rest_isolation": "not applicable",
+    "live_audit": "not applicable"
+  },
+  "noise": false,
+  "proposals": [],
+  "exit_code": 1,
+  "since": null,
+  "deployed_after": {
+    "source": "header",
+    "value": "f3b9fe0f90883da8c0de953dfc94ead9d74dc73d",
+    "header": "x-revision",
+    "expected": "f3b9fe0f90883da8c0de953dfc94ead9d74dc73d"
+  }
+}

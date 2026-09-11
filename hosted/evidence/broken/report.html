@@ -1,0 +1,434 @@
+<!doctype html><html lang="en" id="top"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' file:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><title>Journey report</title><style>:root{--bg:#0d1117;--bg-2:#161b22;--bg-3:#21262d;--border:#30363d;--border-2:#3d444d;--fg:#e6edf3;--fg-2:#9198a1;--accent:#a371f7;--accent-fg:#0d1117;--link:#4493f8;--ok:#3fb950;--warn:#d29922;--bad:#f85149;color-scheme:dark} @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#ffffff;--bg-2:#f6f8fa;--bg-3:#eaeef2;--border:#d1d9e0;--border-2:#b6c0cc;--fg:#1f2328;--fg-2:#59636e;--accent:#8250df;--accent-fg:#ffffff;--link:#0969da;--ok:#1a7f37;--warn:#9a6700;--bad:#d1242f;color-scheme:light}} [data-theme="light"]{--bg:#ffffff;--bg-2:#f6f8fa;--bg-3:#eaeef2;--border:#d1d9e0;--border-2:#b6c0cc;--fg:#1f2328;--fg-2:#59636e;--accent:#8250df;--accent-fg:#ffffff;--link:#0969da;--ok:#1a7f37;--warn:#9a6700;--bad:#d1242f;color-scheme:light}
+*{box-sizing:border-box}html{scroll-padding-top:64px}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;overflow-wrap:anywhere}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:85%;background:var(--bg-3);border-radius:6px;padding:1px 6px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--border)}.bar{max-width:1120px;margin:auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}.brand{display:flex;align-items:center;gap:10px;font-weight:600;white-space:nowrap}.bar button{white-space:nowrap}.bar .muted{white-space:nowrap}.brand svg{width:20px;height:20px;stroke:var(--accent)}.brand span{color:var(--fg-2);font-weight:400}
+main{max-width:1120px;margin:auto;padding:32px 20px 64px;display:flex;flex-direction:column;gap:32px}section{min-width:0;display:flex;flex-direction:column;gap:12px}
+.eyebrow{font:12px ui-monospace,Menlo,Consolas,monospace;color:var(--fg-2);letter-spacing:.02em}h1{margin:0;font-size:clamp(22px,3.2vw,30px);line-height:1.2;letter-spacing:-.02em;text-wrap:balance}h2{margin:0;font-size:20px}h3{margin:0;font-size:15px}p{margin:0;max-width:80ch}.muted{color:var(--fg-2);font-size:13px}
+a{color:var(--link);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;max-width:100%}a:hover{text-decoration:underline}button,summary{min-height:44px;cursor:pointer}button{font:inherit;font-size:13px;font-weight:600;padding:0 12px;color:var(--fg);background:var(--bg-2);border:1px solid var(--border-2);border-radius:6px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.tile{display:flex;flex-direction:column;gap:2px;padding:14px 16px;background:var(--bg-2);border:1px solid var(--border);border-radius:6px}.tile b{font-size:26px;line-height:1.1}.tile span{font-size:12px;color:var(--fg-2)}
+.pill{display:inline-flex;align-items:center;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}.pill.pass{color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,transparent)}.pill.fail,.pill.high{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}.pill.medium,.pill.skipped{color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,transparent)}.pill.low,.pill.info{color:var(--fg-2);background:var(--bg-3)}.pill.accent{color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,transparent)}
+.journeys{display:flex;flex-direction:column;gap:10px}article{display:flex;flex-direction:column;gap:10px;padding:14px 16px;background:var(--bg-2);border:1px solid var(--border);border-radius:6px}article.failed{border-color:var(--bad)}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.head>div{display:flex;align-items:center;gap:10px;min-width:0}.head strong{font-size:15px}
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.step{display:flex;flex-direction:column;gap:6px;min-width:0}.step a{min-height:0}.step img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--border);border-radius:4px;background:var(--bg-3)}.step.failed img{border-color:var(--bad)}.step .noshot{display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;border:1px dashed var(--border);border-radius:4px;color:var(--fg-2);font-size:12px;padding:8px;text-align:center}.step small{font-size:12px;color:var(--fg-2);line-height:1.35}.step:has(details[open]){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:8px 12px;align-items:start}.step:has(details[open])>details{grid-column:1/-1}.step small b{color:var(--fg);font-weight:600}.step.failed small b{color:var(--bad)}
+.why{font-size:14px}.why.fail{color:var(--bad)}details{max-width:100%}summary{color:var(--link);font-size:13px;display:inline-flex;align-items:center}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);padding:12px;border:1px solid var(--border);border-radius:6px;font:12.5px/1.5 ui-monospace,Menlo,Consolas,monospace;max-width:100%;margin:6px 0 0}
+.tbl{border:1px solid var(--border);border-radius:6px;overflow:hidden}table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--border);overflow-wrap:anywhere}th{color:var(--fg-2);font-weight:600;font-size:12px;background:var(--bg-2)}tbody tr:last-child td{border-bottom:0}tr.rcpt td{padding-top:0;border-bottom:1px solid var(--border)}tr.rcpt summary{font-size:12px}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}.box{display:flex;flex-direction:column;gap:8px;padding:16px;background:var(--bg-2);border:1px solid var(--border);border-radius:6px}.box.repair{border-color:var(--accent)}.box p{font-size:14px}.box .muted{font-size:12px}.files{display:flex;gap:8px;flex-wrap:wrap}.files a{padding:0 12px;border:1px solid var(--border-2);border-radius:6px;background:var(--bg-3);color:var(--fg);font-size:13px;font-weight:600;min-height:44px}.files a.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.tiles:has(.change-tile){grid-template-columns:repeat(5,minmax(0,1fr))}.head>div{flex-wrap:wrap}.changes{list-style:none;padding:0;margin:0;display:grid;gap:4px}.changes a{gap:12px;flex-wrap:wrap}.step.failed{border:1px solid var(--bad);border-radius:6px;padding:8px}.step .error{color:var(--bad)}.changed-cell .pill{white-space:normal}.changed-cell a{gap:4px;flex-wrap:wrap}
+@media print{:root,[data-theme]{--bg:#ffffff;--bg-2:#f6f8fa;--bg-3:#eaeef2;--border:#d1d9e0;--border-2:#b6c0cc;--fg:#1f2328;--fg-2:#59636e;--accent:#8250df;--accent-fg:#ffffff;--link:#0969da;--ok:#1a7f37;--warn:#9a6700;--bad:#d1242f;color-scheme:light}.top,#theme{display:none!important}html{scroll-padding-top:0}main{padding:0;gap:20px;max-width:none}.strip{grid-template-columns:repeat(4,minmax(0,1fr))!important}.step:has(details[open]){display:flex;grid-column:auto}article,.box,tr,.step{break-inside:avoid;page-break-inside:avoid}a{color:var(--fg)}footer{padding:20px 0}}
+footer{max-width:1120px;margin:auto;padding:0 20px 40px;font-size:12px;color:var(--fg-2)}
+@media(max-width:720px){.bar .muted{display:none}.brand span{display:none}.tiles,.tiles:has(.change-tile){grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,minmax(0,1fr))}table,thead,tbody,tr,td,th{display:block}thead{display:none}tr{padding:8px 0;border-bottom:1px solid var(--border)}td{padding:3px 12px;border:0}td::before{content:attr(data-label) ": ";color:var(--fg-2)}td[colspan]::before{content:""}}
+.eyebrow{font-family:inherit;letter-spacing:0}.tiles{display:none!important}
+.strip{display:flex;overflow-x:auto;gap:12px;padding:4px 4px 12px;scroll-snap-type:x proximity}
+.step{flex:0 0 160px;scroll-snap-align:start}.step.failed{padding:0;border:0;border-top:3px solid var(--bad);border-radius:0}
+.thumbnail{padding:0;width:100%;text-align:left;overflow:hidden}.thumbnail[aria-expanded="true"]{outline:2px solid var(--accent);outline-offset:2px}
+.thumbnail img{border:0}.thumbnail .noshot{min-height:44px;aspect-ratio:auto;border:0}.viewer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .18s ease}
+.viewer.open{grid-template-rows:1fr}.viewer>div{min-height:0;overflow:hidden}.viewer:not(.open)>div{visibility:hidden}
+.viewer-content{border-top:1px solid var(--border);padding-top:12px}.viewer-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.viewer-nav strong{flex:1 0 100%}.viewer-nav button:disabled{opacity:.45;cursor:default}
+.viewer img{display:block;width:100%;height:auto;max-height:65vh;object-fit:contain;object-position:top;background:var(--bg)}
+.viewer [hidden]{display:none!important}.receipt-fields{display:grid;grid-template-columns:110px minmax(0,1fr);gap:6px 12px;font-size:13px}.receipt-fields dt{color:var(--fg-2)}.receipt-fields dd{margin:0;white-space:pre-wrap}
+.trail{border-left:2px solid var(--border);padding-left:18px;display:flex;flex-direction:column;gap:18px}.trail h3{font-size:16px}.trail section{gap:8px}.trail pre{max-height:180px;overflow:auto}.trail .tbl{border:0}
+.print-summary{display:none}.app-status{display:block;font-size:12px;color:var(--fg-2)}
+@media(prefers-reduced-motion:reduce){.viewer{transition:none}}
+@media(max-width:720px){main{padding:24px 16px 40px;gap:24px}article{padding:12px}.portfolio-table .desktop-action{display:none}.portfolio-table td[data-label="Last run"],.portfolio-table td[data-label="Journeys"],.portfolio-table td[data-label="Access"],.portfolio-table td[data-label="Repair"]{display:none}.portfolio-table td::before{content:none}.portfolio-table td[data-label="App"]>a{font-weight:600}.portfolio-table tr{padding:12px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:0 8px}.portfolio-table td[data-label="App"]{grid-column:1/-1}.portfolio-table td[data-label="Next action"] a{line-height:1.4}.portfolio-table .app-status{margin-bottom:4px}.receipt-fields{grid-template-columns:90px minmax(0,1fr)}.trail{padding-left:12px}}
+@media print{@page{size:A4;margin:12mm}main:has(.print-summary)>*,footer{display:none!important}main>.print-summary{display:block!important;color:#1f2328;font-size:10pt;line-height:1.3}.print-summary h1{font-size:18pt;margin:0 0 8px}.print-summary h2{font-size:12pt;margin:12px 0 6px}.print-summary table{display:table;font-size:9pt}.print-summary thead{display:table-header-group}.print-summary tbody{display:table-row-group}.print-summary tr{display:table-row}.print-summary td,.print-summary th{display:table-cell;padding:5px 8px}.print-summary td::before{content:none}.print-summary p{margin:6px 0}.signatures{display:flex;gap:30px;margin-top:30px}.signatures p{flex:1;border-top:1px solid #59636e;padding-top:8px}.print-summary a{min-height:0;display:inline}}
+</style></head><body><div class="top"><div class="bar"><a class="brand" href="#top" aria-label="Antelier"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"></path></svg>Antelier<span>/ journeys</span></a><div style="display:flex;align-items:center;gap:8px"><span class="muted">2026-09-11 02:34 UTC</span><button type="button" id="theme" aria-label="Switch color theme">Theme</button></div></div></div><main><section><div class="eyebrow">JOURNEY REPORT · Hosted task persistence · https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/ · 2026-09-11 02:34 UTC</div><h1>0 of 1 journeys passed (1 app defect) · access audit not run · repair not evaluated</h1><p class="muted">not notified (no channel configured)</p><p class="muted">deployed version: f3b9fe0f90883da8c0de953dfc94ead9d74dc73d (from the x-revision response header; expected f3b9fe0f90883da8c0de953dfc94ead9d74dc73d)</p><p class="muted">Expectations approved by Codex controlled testbed under operator authorization on 2026-09-10 (hash dc825049847e3bc0).</p><p class="muted">no backend configured; identity check and access audit do not apply</p></section>
+<section id="since"><h2>Since the last run</h2><p class="muted">First run for this app.</p></section>
+
+<section id="journeys"><h2>Journeys</h2><div class="journeys"><article data-filmstrip id="journey-1" class="failed"><div class="head"><div><span class="pill fail">failed</span><strong>a created task remains after reload</strong></div><span class="muted">as a signed-out visitor · 7 steps</span></div><p class="why fail">Stopped at step 7 (exactly 1 visible matches for &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;): app defect · Expected 1 visible text matches; received 0</p><div class="strip"><div class="step passed" id="step-1-1"><button type="button" class="thumbnail" aria-label="View step 1: passed — 1 · open /" aria-controls="viewer-1" aria-expanded="false"><img src="screenshots/journey-1-step-1.png" width="1280" height="800" alt="Screenshot for step 1" loading="lazy"></button><small><b>1 · open /</b><br>passed</small></div><div class="step passed" id="step-1-2"><button type="button" class="thumbnail" aria-label="View step 2: passed — 2 · fill Task title" aria-controls="viewer-1" aria-expanded="false"><img src="screenshots/journey-1-step-2.png" width="1280" height="800" alt="Screenshot for step 2" loading="lazy"></button><small><b>2 · fill Task title</b><br>passed</small></div><div class="step passed" id="step-1-3"><button type="button" class="thumbnail" aria-label="View step 3: passed — 3 · click Add task" aria-controls="viewer-1" aria-expanded="false"><img src="screenshots/journey-1-step-3.png" width="1280" height="800" alt="Screenshot for step 3" loading="lazy"></button><small><b>3 · click Add task</b><br>passed</small></div><div class="step passed" id="step-1-4"><button type="button" class="thumbnail" aria-label="View step 4: passed — 4 · text &quot;Task added&quot;" aria-controls="viewer-1" aria-expanded="false"><img src="screenshots/journey-1-step-4.png" width="1280" height="800" alt="Screenshot for step 4" loading="lazy"></button><small><b>4 · text &quot;Task added&quot;</b><br>passed</small></div><div class="step passed" id="step-1-5"><button type="button" class="thumbnail" aria-label="View step 5: passed — 5 · exactly 1 visible matches for &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;" aria-controls="viewer-1" aria-expanded="false"><img src="screenshots/journey-1-step-5.png" width="1280" height="800" alt="Screenshot for step 5" loading="lazy"></button><small><b>5 · exactly 1 visible matches for &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;</b><br>passed</small></div><div class="step passed" id="step-1-6"><button type="button" class="thumbnail" aria-label="View step 6: passed — 6 · reload page" aria-controls="viewer-1" aria-expanded="false"><img src="screenshots/journey-1-step-6.png" width="1280" height="800" alt="Screenshot for step 6" loading="lazy"></button><small><b>6 · reload page</b><br>passed</small></div><div class="step failed" id="step-1-7"><button type="button" class="thumbnail" aria-label="View step 7: failed — 7 · exactly 1 visible matches for &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;" aria-controls="viewer-1" aria-expanded="false"><img src="screenshots/journey-1-step-7.png" width="1280" height="800" alt="Screenshot for step 7" loading="lazy"></button><small><b>7 · exactly 1 visible matches for &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;</b><br>failed</small><small class="error">app defect · Expected 1 visible text matches; received 0</small></div></div>
+<div class="viewer" id="viewer-1" inert><div><div class="viewer-content"><div class="viewer-nav"><strong data-position aria-live="polite">Step 1 of 7</strong><button type="button" data-prev aria-label="Previous step">Previous</button><button type="button" data-next aria-label="Next step">Next</button><button type="button" data-close>Close viewer</button></div><section data-receipt hidden aria-label="Step 1 receipt"><h3>1 · open / · passed</h3><img src="screenshots/journey-1-step-1.png" width="1280" height="800" alt="Screenshot for step 1" loading="lazy"><dl class="receipt-fields"><dt>Action</dt><dd>{&quot;goto&quot;:&quot;/&quot;}</dd><dt>Matched</dt><dd>not recorded</dd><dt>HTTP status</dt><dd>200</dd><dt>Console errors</dt><dd>[]</dd><dt>Error</dt><dd>none recorded</dd></dl><details><summary>Full step receipt</summary><pre>{
+  &quot;action&quot;: &quot;goto&quot;,
+  &quot;step&quot;: {
+    &quot;goto&quot;: &quot;/&quot;
+  },
+  &quot;timestamp&quot;: &quot;2026-09-11T02:34:58.805Z&quot;,
+  &quot;passed&quot;: true,
+  &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+  &quot;tab&quot;: &quot;main&quot;,
+  &quot;screenshot&quot;: &quot;screenshots/journey-1-step-1.png&quot;,
+  &quot;console_errors&quot;: [],
+  &quot;failed_requests&quot;: [],
+  &quot;http_errors&quot;: [],
+  &quot;responses&quot;: [
+    {
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;status&quot;: 200,
+      &quot;method&quot;: &quot;GET&quot;
+    }
+  ],
+  &quot;status&quot;: 200,
+  &quot;attempts&quot;: [
+    {
+      &quot;action&quot;: &quot;goto&quot;,
+      &quot;step&quot;: {
+        &quot;goto&quot;: &quot;/&quot;
+      },
+      &quot;timestamp&quot;: &quot;2026-09-11T02:34:58.805Z&quot;,
+      &quot;passed&quot;: true,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;screenshot&quot;: &quot;screenshots/journey-1-step-1.png&quot;,
+      &quot;console_errors&quot;: [],
+      &quot;failed_requests&quot;: [],
+      &quot;http_errors&quot;: [],
+      &quot;responses&quot;: [
+        {
+          &quot;tab&quot;: &quot;main&quot;,
+          &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+          &quot;status&quot;: 200,
+          &quot;method&quot;: &quot;GET&quot;
+        }
+      ],
+      &quot;status&quot;: 200,
+      &quot;attempt&quot;: 1
+    }
+  ]
+}</pre></details></section><section data-receipt hidden aria-label="Step 2 receipt"><h3>2 · fill Task title · passed</h3><img src="screenshots/journey-1-step-2.png" width="1280" height="800" alt="Screenshot for step 2" loading="lazy"><dl class="receipt-fields"><dt>Action</dt><dd>{&quot;fill&quot;:{&quot;label&quot;:&quot;Task title&quot;,&quot;value&quot;:&quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;}}</dd><dt>Matched</dt><dd>{&quot;label&quot;:&quot;Task title&quot;}</dd><dt>HTTP status</dt><dd>200</dd><dt>Console errors</dt><dd>[]</dd><dt>Error</dt><dd>none recorded</dd></dl><details><summary>Full step receipt</summary><pre>{
+  &quot;action&quot;: &quot;fill&quot;,
+  &quot;step&quot;: {
+    &quot;fill&quot;: {
+      &quot;label&quot;: &quot;Task title&quot;,
+      &quot;value&quot;: &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;
+    }
+  },
+  &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.101Z&quot;,
+  &quot;passed&quot;: true,
+  &quot;matched&quot;: {
+    &quot;label&quot;: &quot;Task title&quot;
+  },
+  &quot;kept&quot;: true,
+  &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+  &quot;tab&quot;: &quot;main&quot;,
+  &quot;screenshot&quot;: &quot;screenshots/journey-1-step-2.png&quot;,
+  &quot;console_errors&quot;: [],
+  &quot;failed_requests&quot;: [],
+  &quot;http_errors&quot;: [],
+  &quot;responses&quot;: [],
+  &quot;status&quot;: 200,
+  &quot;attempts&quot;: [
+    {
+      &quot;action&quot;: &quot;fill&quot;,
+      &quot;step&quot;: {
+        &quot;fill&quot;: {
+          &quot;label&quot;: &quot;Task title&quot;,
+          &quot;value&quot;: &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;
+        }
+      },
+      &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.101Z&quot;,
+      &quot;passed&quot;: true,
+      &quot;matched&quot;: {
+        &quot;label&quot;: &quot;Task title&quot;
+      },
+      &quot;kept&quot;: true,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;screenshot&quot;: &quot;screenshots/journey-1-step-2.png&quot;,
+      &quot;console_errors&quot;: [],
+      &quot;failed_requests&quot;: [],
+      &quot;http_errors&quot;: [],
+      &quot;responses&quot;: [],
+      &quot;status&quot;: 200,
+      &quot;attempt&quot;: 1
+    }
+  ]
+}</pre></details></section><section data-receipt hidden aria-label="Step 3 receipt"><h3>3 · click Add task · passed</h3><img src="screenshots/journey-1-step-3.png" width="1280" height="800" alt="Screenshot for step 3" loading="lazy"><dl class="receipt-fields"><dt>Action</dt><dd>{&quot;click&quot;:{&quot;text&quot;:&quot;Add task&quot;}}</dd><dt>Matched</dt><dd>{&quot;role&quot;:&quot;button&quot;,&quot;name&quot;:&quot;Add task&quot;}</dd><dt>HTTP status</dt><dd>200</dd><dt>Console errors</dt><dd>[]</dd><dt>Error</dt><dd>none recorded</dd></dl><details><summary>Full step receipt</summary><pre>{
+  &quot;action&quot;: &quot;click&quot;,
+  &quot;step&quot;: {
+    &quot;click&quot;: {
+      &quot;text&quot;: &quot;Add task&quot;
+    }
+  },
+  &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.439Z&quot;,
+  &quot;passed&quot;: true,
+  &quot;matched&quot;: {
+    &quot;role&quot;: &quot;button&quot;,
+    &quot;name&quot;: &quot;Add task&quot;
+  },
+  &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+  &quot;tab&quot;: &quot;main&quot;,
+  &quot;screenshot&quot;: &quot;screenshots/journey-1-step-3.png&quot;,
+  &quot;console_errors&quot;: [],
+  &quot;failed_requests&quot;: [],
+  &quot;http_errors&quot;: [],
+  &quot;responses&quot;: [],
+  &quot;status&quot;: 200,
+  &quot;attempts&quot;: [
+    {
+      &quot;action&quot;: &quot;click&quot;,
+      &quot;step&quot;: {
+        &quot;click&quot;: {
+          &quot;text&quot;: &quot;Add task&quot;
+        }
+      },
+      &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.439Z&quot;,
+      &quot;passed&quot;: true,
+      &quot;matched&quot;: {
+        &quot;role&quot;: &quot;button&quot;,
+        &quot;name&quot;: &quot;Add task&quot;
+      },
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;screenshot&quot;: &quot;screenshots/journey-1-step-3.png&quot;,
+      &quot;console_errors&quot;: [],
+      &quot;failed_requests&quot;: [],
+      &quot;http_errors&quot;: [],
+      &quot;responses&quot;: [],
+      &quot;status&quot;: 200,
+      &quot;attempt&quot;: 1
+    }
+  ]
+}</pre></details></section><section data-receipt hidden aria-label="Step 4 receipt"><h3>4 · text &quot;Task added&quot; · passed</h3><img src="screenshots/journey-1-step-4.png" width="1280" height="800" alt="Screenshot for step 4" loading="lazy"><dl class="receipt-fields"><dt>Action</dt><dd>{&quot;expect&quot;:{&quot;text&quot;:&quot;Task added&quot;}}</dd><dt>Matched</dt><dd>not recorded</dd><dt>HTTP status</dt><dd>200</dd><dt>Console errors</dt><dd>[]</dd><dt>Error</dt><dd>none recorded</dd></dl><details><summary>Full step receipt</summary><pre>{
+  &quot;action&quot;: &quot;expect&quot;,
+  &quot;step&quot;: {
+    &quot;expect&quot;: {
+      &quot;text&quot;: &quot;Task added&quot;
+    }
+  },
+  &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.574Z&quot;,
+  &quot;passed&quot;: true,
+  &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+  &quot;tab&quot;: &quot;main&quot;,
+  &quot;screenshot&quot;: &quot;screenshots/journey-1-step-4.png&quot;,
+  &quot;console_errors&quot;: [],
+  &quot;failed_requests&quot;: [],
+  &quot;http_errors&quot;: [],
+  &quot;responses&quot;: [],
+  &quot;status&quot;: 200,
+  &quot;attempts&quot;: [
+    {
+      &quot;action&quot;: &quot;expect&quot;,
+      &quot;step&quot;: {
+        &quot;expect&quot;: {
+          &quot;text&quot;: &quot;Task added&quot;
+        }
+      },
+      &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.574Z&quot;,
+      &quot;passed&quot;: true,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;screenshot&quot;: &quot;screenshots/journey-1-step-4.png&quot;,
+      &quot;console_errors&quot;: [],
+      &quot;failed_requests&quot;: [],
+      &quot;http_errors&quot;: [],
+      &quot;responses&quot;: [],
+      &quot;status&quot;: 200,
+      &quot;attempt&quot;: 1
+    }
+  ]
+}</pre></details></section><section data-receipt hidden aria-label="Step 5 receipt"><h3>5 · exactly 1 visible matches for &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot; · passed</h3><img src="screenshots/journey-1-step-5.png" width="1280" height="800" alt="Screenshot for step 5" loading="lazy"><dl class="receipt-fields"><dt>Action</dt><dd>{&quot;expect&quot;:{&quot;text&quot;:&quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;,&quot;count&quot;:1}}</dd><dt>Matched</dt><dd>not recorded</dd><dt>HTTP status</dt><dd>200</dd><dt>Console errors</dt><dd>[]</dd><dt>Error</dt><dd>none recorded</dd></dl><details><summary>Full step receipt</summary><pre>{
+  &quot;action&quot;: &quot;expect&quot;,
+  &quot;step&quot;: {
+    &quot;expect&quot;: {
+      &quot;text&quot;: &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;,
+      &quot;count&quot;: 1
+    }
+  },
+  &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.606Z&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed_count&quot;: 1,
+  &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+  &quot;tab&quot;: &quot;main&quot;,
+  &quot;screenshot&quot;: &quot;screenshots/journey-1-step-5.png&quot;,
+  &quot;console_errors&quot;: [],
+  &quot;failed_requests&quot;: [],
+  &quot;http_errors&quot;: [],
+  &quot;responses&quot;: [],
+  &quot;status&quot;: 200,
+  &quot;attempts&quot;: [
+    {
+      &quot;action&quot;: &quot;expect&quot;,
+      &quot;step&quot;: {
+        &quot;expect&quot;: {
+          &quot;text&quot;: &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;,
+          &quot;count&quot;: 1
+        }
+      },
+      &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.606Z&quot;,
+      &quot;passed&quot;: true,
+      &quot;observed_count&quot;: 1,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;screenshot&quot;: &quot;screenshots/journey-1-step-5.png&quot;,
+      &quot;console_errors&quot;: [],
+      &quot;failed_requests&quot;: [],
+      &quot;http_errors&quot;: [],
+      &quot;responses&quot;: [],
+      &quot;status&quot;: 200,
+      &quot;attempt&quot;: 1
+    }
+  ]
+}</pre></details></section><section data-receipt hidden aria-label="Step 6 receipt"><h3>6 · reload page · passed</h3><img src="screenshots/journey-1-step-6.png" width="1280" height="800" alt="Screenshot for step 6" loading="lazy"><dl class="receipt-fields"><dt>Action</dt><dd>{&quot;reload&quot;:true}</dd><dt>Matched</dt><dd>not recorded</dd><dt>HTTP status</dt><dd>200</dd><dt>Console errors</dt><dd>[]</dd><dt>Error</dt><dd>none recorded</dd></dl><details><summary>Full step receipt</summary><pre>{
+  &quot;action&quot;: &quot;reload&quot;,
+  &quot;step&quot;: {
+    &quot;reload&quot;: true
+  },
+  &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.639Z&quot;,
+  &quot;passed&quot;: true,
+  &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+  &quot;tab&quot;: &quot;main&quot;,
+  &quot;screenshot&quot;: &quot;screenshots/journey-1-step-6.png&quot;,
+  &quot;console_errors&quot;: [],
+  &quot;failed_requests&quot;: [],
+  &quot;http_errors&quot;: [],
+  &quot;responses&quot;: [
+    {
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;status&quot;: 200,
+      &quot;method&quot;: &quot;GET&quot;
+    }
+  ],
+  &quot;status&quot;: 200,
+  &quot;attempts&quot;: [
+    {
+      &quot;action&quot;: &quot;reload&quot;,
+      &quot;step&quot;: {
+        &quot;reload&quot;: true
+      },
+      &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.639Z&quot;,
+      &quot;passed&quot;: true,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;screenshot&quot;: &quot;screenshots/journey-1-step-6.png&quot;,
+      &quot;console_errors&quot;: [],
+      &quot;failed_requests&quot;: [],
+      &quot;http_errors&quot;: [],
+      &quot;responses&quot;: [
+        {
+          &quot;tab&quot;: &quot;main&quot;,
+          &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+          &quot;status&quot;: 200,
+          &quot;method&quot;: &quot;GET&quot;
+        }
+      ],
+      &quot;status&quot;: 200,
+      &quot;attempt&quot;: 1
+    }
+  ]
+}</pre></details></section><section data-receipt hidden aria-label="Step 7 receipt"><h3>7 · exactly 1 visible matches for &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot; · failed</h3><img src="screenshots/journey-1-step-7.png" width="1280" height="800" alt="Screenshot for step 7" loading="lazy"><dl class="receipt-fields"><dt>Action</dt><dd>{&quot;expect&quot;:{&quot;text&quot;:&quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;,&quot;count&quot;:1}}</dd><dt>Matched</dt><dd>not recorded</dd><dt>HTTP status</dt><dd>200</dd><dt>Console errors</dt><dd>[]</dd><dt>Error</dt><dd>Expected 1 visible text matches; received 0</dd><dt>Cause</dt><dd>app defect</dd></dl><details><summary>Full step receipt</summary><pre>{
+  &quot;action&quot;: &quot;expect&quot;,
+  &quot;step&quot;: {
+    &quot;expect&quot;: {
+      &quot;text&quot;: &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;,
+      &quot;count&quot;: 1
+    }
+  },
+  &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.723Z&quot;,
+  &quot;passed&quot;: false,
+  &quot;observed_count&quot;: 0,
+  &quot;error&quot;: &quot;Expected 1 visible text matches; received 0&quot;,
+  &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+  &quot;tab&quot;: &quot;main&quot;,
+  &quot;screenshot&quot;: &quot;screenshots/journey-1-step-7.png&quot;,
+  &quot;console_errors&quot;: [],
+  &quot;failed_requests&quot;: [],
+  &quot;http_errors&quot;: [],
+  &quot;responses&quot;: [],
+  &quot;status&quot;: 200,
+  &quot;also_observed&quot;: [],
+  &quot;runner_interference&quot;: [],
+  &quot;cause&quot;: &quot;app&quot;,
+  &quot;observed&quot;: {
+    &quot;path&quot;: &quot;/&quot;,
+    &quot;controls&quot;: [
+      {
+        &quot;role&quot;: &quot;input&quot;,
+        &quot;name&quot;: &quot;&quot;,
+        &quot;label&quot;: &quot;Task title&quot;,
+        &quot;placeholder&quot;: &quot;&quot;
+      },
+      {
+        &quot;role&quot;: &quot;button&quot;,
+        &quot;name&quot;: &quot;Add task&quot;,
+        &quot;label&quot;: &quot;&quot;,
+        &quot;placeholder&quot;: &quot;&quot;
+      }
+    ]
+  },
+  &quot;classification&quot;: {
+    &quot;label&quot;: &quot;app defect&quot;,
+    &quot;evidence&quot;: [
+      &quot;Expected 1 visible text matches; received 0&quot;,
+      &quot;Observed controls: Task title, Add task&quot;,
+      &quot;Navigation HTTP status: 200&quot;,
+      &quot;Screenshot: screenshots/journey-1-step-7.png&quot;
+    ],
+    &quot;fix&quot;: &quot;Inspect the screenshot and observed controls against the owned expectation.&quot;
+  },
+  &quot;attempts&quot;: [
+    {
+      &quot;action&quot;: &quot;expect&quot;,
+      &quot;step&quot;: {
+        &quot;expect&quot;: {
+          &quot;text&quot;: &quot;Antelier check 45fea495-7db3-41c6-8bd7-654930fa4d42&quot;,
+          &quot;count&quot;: 1
+        }
+      },
+      &quot;timestamp&quot;: &quot;2026-09-11T02:34:59.723Z&quot;,
+      &quot;passed&quot;: false,
+      &quot;observed_count&quot;: 0,
+      &quot;error&quot;: &quot;Expected 1 visible text matches; received 0&quot;,
+      &quot;url&quot;: &quot;https://pr-2-antelier-acceptance-testbed.kibahung19.workers.dev/&quot;,
+      &quot;tab&quot;: &quot;main&quot;,
+      &quot;screenshot&quot;: &quot;screenshots/journey-1-step-7.png&quot;,
+      &quot;console_errors&quot;: [],
+      &quot;failed_requests&quot;: [],
+      &quot;http_errors&quot;: [],
+      &quot;responses&quot;: [],
+      &quot;status&quot;: 200,
+      &quot;also_observed&quot;: [],
+      &quot;runner_interference&quot;: [],
+      &quot;cause&quot;: &quot;app&quot;,
+      &quot;observed&quot;: {
+        &quot;path&quot;: &quot;/&quot;,
+        &quot;controls&quot;: [
+          {
+            &quot;role&quot;: &quot;input&quot;,
+            &quot;name&quot;: &quot;&quot;,
+            &quot;label&quot;: &quot;Task title&quot;,
+            &quot;placeholder&quot;: &quot;&quot;
+          },
+          {
+            &quot;role&quot;: &quot;button&quot;,
+            &quot;name&quot;: &quot;Add task&quot;,
+            &quot;label&quot;: &quot;&quot;,
+            &quot;placeholder&quot;: &quot;&quot;
+          }
+        ]
+      },
+      &quot;classification&quot;: {
+        &quot;label&quot;: &quot;app defect&quot;,
+        &quot;evidence&quot;: [
+          &quot;Expected 1 visible text matches; received 0&quot;,
+          &quot;Observed controls: Task title, Add task&quot;,
+          &quot;Navigation HTTP status: 200&quot;,
+          &quot;Screenshot: screenshots/journey-1-step-7.png&quot;
+        ],
+        &quot;fix&quot;: &quot;Inspect the screenshot and observed controls against the owned expectation.&quot;
+      },
+      &quot;attempt&quot;: 1
+    }
+  ]
+}</pre></details></section></div></div></div><details><summary>Failure evidence and attempts</summary><section><h3>Attempt 1: app defect</h3><p>Expected 1 visible text matches; received 0; Observed controls: Task title, Add task; Navigation HTTP status: 200; Screenshot: screenshots/journey-1-step-7.png</p><p>Inspect the screenshot and observed controls against the owned expectation.</p><a href="screenshots/journey-1-step-7.png">Attempt 1 screenshot</a><pre>{
+  &quot;path&quot;: &quot;/&quot;,
+  &quot;controls&quot;: [
+    {
+      &quot;role&quot;: &quot;input&quot;,
+      &quot;name&quot;: &quot;&quot;,
+      &quot;label&quot;: &quot;Task title&quot;,
+      &quot;placeholder&quot;: &quot;&quot;
+    },
+    {
+      &quot;role&quot;: &quot;button&quot;,
+      &quot;name&quot;: &quot;Add task&quot;,
+      &quot;label&quot;: &quot;&quot;,
+      &quot;placeholder&quot;: &quot;&quot;
+    }
+  ]
+}</pre></section></details></article></div></section>
+<section id="findings"><h2>Access findings</h2><div><span class="muted">Audit receipt file not recorded</span> · migration revision not recorded</div><div class="tbl"><table><thead><tr><th style="width:110px">Severity</th><th style="width:22%">Where</th><th>What we found</th><th style="width:26%">Evidence</th></tr></thead><tbody><tr><td colspan="4" class="muted">no backend configured; identity check and access audit do not apply</td></tr></tbody></table></div></section>
+<section id="repair"><h2>Finding → Repair → Verified</h2><div class="trail"><section><h3>Finding</h3><p class="muted">No finding run attached to this repair.</p></section><section><h3>Repair</h3><p>no repair prepared</p><p>no backend configured; identity check and access audit do not apply</p></section><section id="verified"><h3>Verified rerun</h3><p class="muted">no rerun since the repair</p></section></div></section><section id="not-checked"><h3>What this did not check</h3><p class="muted">no backend configured; identity check and access audit do not apply · Only the configured journeys and assertions were checked. Browser visibility does not prove API isolation or physical data erasure. · Payments, other devices, third-party origins and unlisted workflows were not checked. · No migration was applied. Screenshots may contain app data; keep reports private. · Access audit not available for unknown backend in this version; journeys still apply. · Stack: unknown; backend: unknown. Repository fingerprints do not prove the deployed stack or project ownership.</p></section><section class="print-summary"><h1>Hosted task persistence</h1><p>2026-09-11 02:34 UTC · Run 2026-09-11T02:34:57.424Z</p><p>0 of 1 journeys passed (1 app defect) · access audit not run · repair not evaluated</p><h2>Journeys</h2><table><thead><tr><th>Journey</th><th>Result</th></tr></thead><tbody><tr><td>a created task remains after reload</td><td>failed</td></tr></tbody></table><h2>Access findings</h2><p>Access audit not run.</p><h2>Repair and rerun</h2><p>no repair prepared</p><p>no rerun since the repair</p><p>Sign-off covers only the recorded checks. Full screenshots, receipts and limitations remain in the report.</p><div class="signatures"><p>Agency signature<br>Date: __________________</p><p>Client signature<br>Date: __________________</p></div></section></main><footer>Prepared by Antelier from owner-authorized checks only: the app URL and keys the owner supplied, nothing sent elsewhere. Re-run: <code>npx antelier journeys run</code>. Screenshots may show app data; keep this folder private.</footer><script>(function(){var root=document.documentElement,key='antelier-theme',saved=null;try{saved=localStorage.getItem(key)}catch(e){}if(saved==='light'||saved==='dark')root.dataset.theme=saved;document.getElementById('theme').addEventListener('click',function(){var isLight=root.dataset.theme==='light'||(!root.dataset.theme&&matchMedia('(prefers-color-scheme: light)').matches);root.dataset.theme=isLight?'dark':'light';try{localStorage.setItem(key,root.dataset.theme)}catch(e){}});})();(function(){document.querySelectorAll('[data-filmstrip]').forEach(function(article){
+var failed=article.querySelector('.step.failed'),strip=article.querySelector('.strip');if(failed&&strip)strip.scrollLeft+=failed.getBoundingClientRect().left-strip.getBoundingClientRect().left;
+var buttons=Array.from(article.querySelectorAll('.thumbnail')),viewer=article.querySelector('.viewer'),panels=Array.from(viewer.querySelectorAll('[data-receipt]')),index=0;
+function show(n,focus){index=Math.max(0,Math.min(buttons.length-1,n));viewer.classList.add('open');viewer.removeAttribute('inert');buttons.forEach(function(b,i){b.setAttribute('aria-expanded',String(i===index));});panels.forEach(function(p,i){p.hidden=i!==index;});viewer.querySelector('[data-position]').textContent='Step '+(index+1)+' of '+buttons.length;viewer.querySelector('[data-prev]').disabled=index===0;viewer.querySelector('[data-next]').disabled=index===buttons.length-1;if(focus)buttons[index].focus();}
+buttons.forEach(function(b,i){b.addEventListener('click',function(){show(i,false);});});viewer.querySelector('[data-prev]').addEventListener('click',function(){show(index-1,false);});viewer.querySelector('[data-next]').addEventListener('click',function(){show(index+1,false);});viewer.querySelector('[data-close]').addEventListener('click',function(){viewer.classList.remove('open');viewer.setAttribute('inert','');buttons.forEach(function(b){b.setAttribute('aria-expanded','false');});buttons[index].focus();});article.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();var current=buttons.indexOf(document.activeElement);if(current>=0)index=current;show(index+(e.key==='ArrowRight'?1:-1),current>=0);}});
+});})();</script></body></html>
