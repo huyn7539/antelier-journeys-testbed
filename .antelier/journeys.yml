@@ -1,8 +1,20 @@
 version: 1
-name: Runner-local synthetic preview
-app: http://127.0.0.1:7888/
+name: Hosted task persistence
+app: https://antelier-acceptance-testbed.kibahung19.workers.dev/
+preview:
+  url: https://pr-{pr}-antelier-acceptance-testbed.kibahung19.workers.dev/
+  source:
+    type: commit-status
+    context: antelier/controlled-cloudflare-preview
+    creator_id: 47341426
+deployed: { header: x-revision }
 journeys:
-  - name: visitor sees the approved Ready state
+  - name: a created task remains after reload
     steps:
       - goto: /
-      - expect: { text: Ready }
+      - fill: { label: Task title, value: "{{ANTELIER_ITEM_TITLE}}" }
+      - click: { text: Add task }
+      - expect: { text: Task added }
+      - expect: { text: "{{ANTELIER_ITEM_TITLE}}", count: 1 }
+      - reload: true
+      - expect: { text: "{{ANTELIER_ITEM_TITLE}}", count: 1 }

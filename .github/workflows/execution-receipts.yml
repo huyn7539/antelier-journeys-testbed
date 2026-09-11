@@ -19,34 +19,6 @@ jobs:
     outputs:
       receipt-sha256: ${{ steps.verify.outputs.receipt-sha256 }}
     steps:
-      - name: Serve controlled static fork preview with a trusted runner
-        env:
-          GH_TOKEN: ${{ github.token }}
-          SOURCE_REPO: ${{ github.event.workflow_run.head_repository.full_name }}
-          SOURCE_HEAD: ${{ github.event.workflow_run.head_sha }}
-        shell: bash
-        run: |
-          # Fetch bytes only. Never evaluate or execute repository code here.
-          gh api "repos/$SOURCE_REPO/contents/preview.html?ref=$SOURCE_HEAD" > "$RUNNER_TEMP/preview-response.json"
-          python3 - <<'PY'
-          import os,json,base64,pathlib,subprocess
-          root=pathlib.Path(os.environ['RUNNER_TEMP'])
-          row=json.loads((root/'preview-response.json').read_text())
-          assert row.get('type')=='file' and row.get('encoding')=='base64' and row.get('size',999999)<65536
-          (root/'preview.html').write_bytes(base64.b64decode(row['content']))
-          server=root/'trusted-preview.py'
-          server.write_text("""from http.server import BaseHTTPRequestHandler,HTTPServer
-          from pathlib import Path
-          import sys
-          data=Path(sys.argv[1]).read_bytes(); revision=sys.argv[2]
-          class Handler(BaseHTTPRequestHandler):
-              def do_GET(self):
-                  self.send_response(200); self.send_header('Content-Type','text/html'); self.end_headers(); self.wfile.write(data)
-          HTTPServer(('127.0.0.1',7888),Handler).serve_forever()
-          """)
-          subprocess.Popen(['python3',str(server),str(root/'preview.html'),os.environ['SOURCE_HEAD']],env={'PATH':os.environ['PATH']},stdout=open(root/'preview.log','w'),stderr=subprocess.STDOUT,start_new_session=True)
-          PY
-          curl --fail --retry 8 --retry-connrefused --retry-delay 1 http://127.0.0.1:7888/ > /dev/null
       - uses: antelier/action@4036703c01eeb345f834faedbb9509595770fd18
         id: verify
         with:
